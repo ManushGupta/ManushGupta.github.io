@@ -166,17 +166,21 @@ This set the stage for new programming models such as Spark. Why? Because Spark 
 <div class="article-wrap">
       <h2 id="he-makes-it-look-easy">Key features</h2>
 
-<h3>Unified Platform</h3>>
+<h3>Unified Platform</h3>
 <p> Writing big data applications by reading data off of a SQL server and then doing Machine Learning over it, is all made feasible with one scan over data using Spark.</p>
 
 <h3>Computational Engine</h3>
 
-<p>At its core, Spark is a “computational engine” that is responsible for scheduling, distributing, and monitoring applications consisting of many computational tasks across many worker machines, or a computing cluster. You can use Spark with a wide variety of persistent storage systems, including cloud storage systems such as Azure Storage and Amazon S3, distributed file systems such as Apache Hadoop, key-value stores such as Apache Cassandra, and message buses such as Apache Kafka. However, Spark neither stores data long term itself, nor favors one over another. Spark’s focus on computation makes it different from earlier big data software platforms such as Apache Hadoop. Hadoop included both a storage system (the Hadoop file system, designed for low-cost storage over clusters of commodity servers) and a computing system (MapReduce), which were closely integrated together.</p>
+<p>Spark is a “computational engine” that is responsible for scheduling, distributing, and monitoring applications consisting of many computational tasks across many worker machines, or a computing cluster. One can use Spark with many persistent storage systems, distributed file systems such as Apache Hadoop, key-value stores such as Apache Cassandra, and message buses such as Apache Kafka, cloud storage systems such as Azure Storage and Amazon S3. However, Spark neither stores data long term itself, nor favors one over another. Spark’s focus on computation makes it different from earlier big data software platforms such as Apache Hadoop. Hadoop included both a storage system (the Hadoop file system, designed for low-cost storage over clusters of commodity servers) and a computing system (MapReduce), which were closely integrated together.</p>
 
 <h3>Speed</h3>
-<p>On the speed side, Spark extends the popular MapReduce model to efficiently support more types of computations, including interactive queries and stream processing. One of the main features Spark offers for speed is the ability to run computations in memory.
-On the generality side, Spark is designed to cover a wide range of workloads that previously required separate distributed systems, including batch applications, iterative algorithms, interactive queries, and streaming which is often necessary in production data analysis pipelines.
-Spark is designed to be highly accessible, offering simple APIs in Python, Java, Scala, and SQL, and rich built-in libraries. It also integrates closely with other Big Data tools. In particular, Spark can run in Hadoop clusters and access any Hadoop data source, including Cassandra (NoSQL database management system) .</p>
+<p>On the speed side, Spark extends the popular MapReduce model to efficiently support more types of computations, including interactive queries and stream processing. One of the main features Spark offers for speed is the ability to run computations in memory.<p>
+
+<h3>Generality</h3>>
+<p>
+
+Spark is designed to cover a wide range of workloads that previously required separate distributed systems, including batch applications, iterative algorithms, interactive queries, and streaming which is often necessary in production data analysis pipelines.
+Spark is designed to be highly accessible, offering simple APIs in Python, Java, Scala, and SQL, and rich built-in libraries. It also integrates closely with other Big Data tools. In particular, Spark can run in Hadoop clusters and access any Hadoop data source.</p>
 
 </div>
 
