@@ -182,7 +182,7 @@ This set the stage for new programming models such as Spark. Why? Because Spark 
 Spark is designed to cover a wide range of workloads that previously required separate distributed systems, including batch applications, iterative algorithms, interactive queries, and streaming which is often necessary in production data analysis pipelines.
 Spark is designed to be highly accessible, offering simple APIs in Python, Java, Scala, and SQL, and rich built-in libraries. It also integrates closely with other Big Data tools. In particular, Spark can run in Hadoop clusters and access any Hadoop data source.</p>
 
-</div>
+
 <h3>
   RDD
 </h3>
@@ -194,7 +194,7 @@ Spark is designed to be highly accessible, offering simple APIs in Python, Java,
 The lineage also allows for lazy evaluation, in other words, nothing is evaluated until a result is requested. Spark has two types of functions for this process– Transformations and Actions. Transformations reshape the input RDD to a new RDD. A simple example of a transformation would be a map extracting a couple of values or a filter selecting a subset of rows. Actions cause the RDD to be evaluated and return some results. A simple example would be the count function which returns the number of rows in the RDD. One interesting thing is the while reduce is itself an action returning a single item, but reduceByKey is a transformation returning a new RDD of keys and values.  
 </p>
 
-
+</div>
 <div class="article-wrap">
       <h2 id="he-makes-it-look-easy">Spark vs Hadoop MapReduce</h2>
 
