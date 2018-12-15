@@ -159,28 +159,62 @@
 This trend however stopped due to a major heat dissipation limitation around 2004-05. We didn't have the technology to cool the chipsets with the amount of heat being dissipated on them as the number of transistors just kept on increasing. Therefore in keeping with the Gustaffson's law, the ecosystem switched towards adding more parallel CPU cores all running at the same speed. This change meant that suddenly applications needed to be modified to add parallelism in order to run faster. This provoked the need for parallel computing clusters like Hadoop Map Reduce.</p>
 <p> 
   Moreover, the cost to store 1 TB of data continues to drop by roughly two times every 14 months, meaning that it is very inexpensive for organizations of all sizes to store large amounts of data.
-This set the stage for new programming models such as Spark. Why? Because Spark supports <b>In - Memory Processing</b></p>
+This set the stage for new programming models such as Spark. Why? Because Spark supports <b>In - Memory Processing.</b></p>
 
 </div>
 
 <div class="article-wrap">
       <h2 id="he-makes-it-look-easy">Key features</h2>
 
-<p>Spark’s key driving goal is to offer a unified platform for writing big data applications. It is designed to support a wide range of data analytics tasks, ranging from simple data loading and SQL queries to machine learning and streaming computation, over the same computing engine and with a consistent set of APIs. For example, if you load data using a SQL query and then evaluate a machine learning model over it using Spark’s ML library, the engine can combine these steps into one scan over the data.</p>
+<h3>Unified Platform</h3>>
+<p> Writing big data applications by reading data off of a SQL server and then doing Machine Learning over it, is all made feasible with one scan over data using Spark.</p>
+
+<h3>Computational Engine</h3>
+
 <p>At its core, Spark is a “computational engine” that is responsible for scheduling, distributing, and monitoring applications consisting of many computational tasks across many worker machines, or a computing cluster. You can use Spark with a wide variety of persistent storage systems, including cloud storage systems such as Azure Storage and Amazon S3, distributed file systems such as Apache Hadoop, key-value stores such as Apache Cassandra, and message buses such as Apache Kafka. However, Spark neither stores data long term itself, nor favors one over another. Spark’s focus on computation makes it different from earlier big data software platforms such as Apache Hadoop. Hadoop included both a storage system (the Hadoop file system, designed for low-cost storage over clusters of commodity servers) and a computing system (MapReduce), which were closely integrated together.</p>
+
+<h3>Speed</h3>
 <p>On the speed side, Spark extends the popular MapReduce model to efficiently support more types of computations, including interactive queries and stream processing. One of the main features Spark offers for speed is the ability to run computations in memory.
 On the generality side, Spark is designed to cover a wide range of workloads that previously required separate distributed systems, including batch applications, iterative algorithms, interactive queries, and streaming which is often necessary in production data analysis pipelines.
-Spark is designed to be highly accessible, offering simple APIs in Python, Java, Scala, and SQL, and rich built-in libraries. It also integrates closely with other Big Data tools. In particular, Spark can run in Hadoop clusters and access any Hadoop data source, including Cassandra (NoSQL database management system) </p>
+Spark is designed to be highly accessible, offering simple APIs in Python, Java, Scala, and SQL, and rich built-in libraries. It also integrates closely with other Big Data tools. In particular, Spark can run in Hadoop clusters and access any Hadoop data source, including Cassandra (NoSQL database management system) .</p>
 
 </div>
 
 
+<div class="article-wrap">
+      <h2 id="he-makes-it-look-easy">Spark vs Hadoop MapReduce</h2>
+
+      <img src="../images/vs.png" />
+
+      <h3>Differences in mapping between Spark and Hadoop</h3>
+
+      <p>Map tasks in Hadoop emits data in Key:Value pairs, then output is stored in circular buffers which is around 100 mb in size. The output is stored onto the disk if this buffer is 80 mb full. All these spill files are merged into one big file which is sorted and then partitioned for all reducers to work parallely.</p>
+
+      <p>Map tasks in Spark emit outputs which are written to OS Cache, all map tasks on one core are consolidated into a single file and then partitioned into the number of reducers, so the number of files generated is equal to the number of cores times the number of reducers. For ex, If there are 6000(R) and 4 (C) Cores, the number of files will be (R*C) 6000*4=24000 files.</p>
+
+      <h3>Differences in Reduce</h3>
+      
+      <img src="../images/vs2.png" />
+
+      <p>The Reduce phase of Hadoop MapReduce pulls the shuffle files for each reducer in memory, the data is spilled to disk if memory is 70% full. Spill files are merged to form bigger files (merging and sorting) and reduce is called finally called.</p>
+
+      <p>The Reduce phase of Spark pulls data on reducers, which is written directly to memory. Overflowing data spills to disk and the reducer is called.</p>
+
+  </div>
+
+  <div class="article-wrap">
+
+    <h2>References</h2>
+    <p>https://people.eecs.berkeley.edu/~kubitron/courses/cs262a-F13/projects/reports/project16_report.pdf</p>
+
+    <p>[Apache Spark: a unified engine for big data processing](201611 Apache Spark A Unified Engine for Big Data Processing.pdf). Zaharia, Matei, Reynold S. Xin, Patrick Wendell, Tathagata Das, Michael Armbrust, Ankur Dave, Xiangrui Meng et al. Communications of the ACM 59, no. 11 (2016): 56-65.</p>
+
+    <p>https://www.quora.com/What-is-the-difference-in-idea-design-and-code-between-Apache-Spark-and-Apache-Hadoop</p>
+    
+  </div>
 
 
 
-<p><img src="../images/coursera-grade.png" /></p>
-
-<p>In terms of completing the course, i feel like 4-6 weeks is quite enough time, if done regularly. Off to <a href="http://cs231n.github.io/">CS231n</a> :).</p>
 
       <hr />
       <footer role="contentinfo">
@@ -188,13 +222,13 @@ Spark is designed to be highly accessible, offering simple APIs in Python, Java,
   <h4>Share on</h4>
   <ul>
     <li>
-      <a href="https://twitter.com/intent/tweet?text=//manushgupta.github.io/ML/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+      <a href="https://twitter.com/intent/tweet?text=//manushgupta.github.io/DS/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
     </li>
     <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=//manushgupta.github.io/ML/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=//manushgupta.github.io/DS/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
     </li>
     <li>
-      <a href="https://plus.google.com/share?url=//manushgupta.github.io/ML/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+      <a href="https://plus.google.com/share?url=//manushgupta.github.io/DS/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
     </li>
   </ul>
 </div><!-- /.social-share -->
@@ -210,7 +244,7 @@ Spark is designed to be highly accessible, offering simple APIs in Python, Java,
   <footer>
     
 
-<span>&copy; 2016 Manush Gupta.</span>
+<span>&copy; 2018 Manush Gupta.</span>
 
   </footer>
 </div><!-- /.footer-wrap -->
