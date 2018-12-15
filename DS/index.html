@@ -183,6 +183,16 @@ Spark is designed to cover a wide range of workloads that previously required se
 Spark is designed to be highly accessible, offering simple APIs in Python, Java, Scala, and SQL, and rich built-in libraries. It also integrates closely with other Big Data tools. In particular, Spark can run in Hadoop clusters and access any Hadoop data source.</p>
 
 </div>
+<h3>
+  RDD
+</h3>
+<p>Spark has two ways of looking at data at each node. Either as an RDD (Resilient Distributed Datasets) or a DataFrame. An RDD is a fundamental data structure of Spark. It is an immutable, partitioned set of data. It can contain a set of any Java, Scala or Python objects (including custom classes). They contain the lineage of the data (the steps used to create them), so are resilient as they can be easily recreated. An RDD can either be a basic table of objects or can be a set of key and value pairs. There are some special functions for working with key based RDDs which provide great functionality and power (e.g. reduceByKey and groupByKey). A key feature is fault tolerance as RDD's have full lineage of the data.
+</p>
+
+<h3>Lazy Execution</h3>
+<p>
+The lineage also allows for lazy evaluation, in other words, nothing is evaluated until a result is requested. Spark has two types of functions for this process– Transformations and Actions. Transformations reshape the input RDD to a new RDD. A simple example of a transformation would be a map extracting a couple of values or a filter selecting a subset of rows. Actions cause the RDD to be evaluated and return some results. A simple example would be the count function which returns the number of rows in the RDD. One interesting thing is the while reduce is itself an action returning a single item, but reduceByKey is a transformation returning a new RDD of keys and values.  
+</p>
 
 
 <div class="article-wrap">
@@ -215,6 +225,7 @@ Spark is designed to be highly accessible, offering simple APIs in Python, Java,
       <li><p>[Apache Spark: a unified engine for big data processing](201611 Apache Spark A Unified Engine for Big Data Processing.pdf). Zaharia, Matei, Reynold S. Xin, Patrick Wendell, Tathagata Das, Michael Armbrust, Ankur Dave, Xiangrui Meng et al. Communications of the ACM 59, no. 11 (2016): 56-65.</p>
       </li>
       <li><p>https://www.quora.com/What-is-the-difference-in-idea-design-and-code-between-Apache-Spark-and-Apache-Hadoop</p></li>
+      <li><p>https://medium.com/explore-artificial-intelligence/introduction-to-apache-spark-81457568e416</p></li>
     </ul>
     
 
