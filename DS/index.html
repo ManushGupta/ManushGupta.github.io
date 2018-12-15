@@ -1,0 +1,229 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>SPARK vs Hadoop MapReduce &#8211; Manush Gupta</title>
+<meta name="description" content="What is Spark? Is it better than Hadoop MapReduce? My thoughts..">
+<meta name="keywords" content="SPARK, MapReduce">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Spark vs Hadoop MapReduce">
+<meta name="twitter:description" content="What is Spark? Is it better than Hadoop MapReduce? My thoughts..">
+<meta name="twitter:site" content="@manushgupta">
+<meta name="twitter:creator" content="@manushgupta">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="//manushgupta.github.io/images/default-thumb.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine learning - Coursera Course -Stanford">
+<meta property="og:description" content="What is Spark? Is it better than Hadoop MapReduce? My thoughts..">
+<meta property="og:url" content="//manushgupta.github.io/ML/">
+<meta property="og:site_name" content="Manush Gupta">
+
+<meta property="og:image" content="//manushgupta.github.io/images/default-thumb.png">
+
+
+<!-- Webmaster Tools verfication -->
+<meta name="google-site-verification" content="pEK-XOFUNK3qw7l4p0kosQlkq69By0wEFbzyhfqR0QE">
+
+
+
+<link rel="canonical" href="//manushgupta.github.io/ML/">
+<link href="//manushgupta.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Manush Gupta Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="//manushgupta.github.io/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="//manushgupta.github.io/assets/js/vendor/html5shiv.min.js"></script>
+	<script src="//manushgupta.github.io/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="//manushgupta.github.io/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="//manushgupta.github.io/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="//manushgupta.github.io/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="//manushgupta.github.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="//manushgupta.github.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="//manushgupta.github.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="//manushgupta.github.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="//manushgupta.github.io/">Manush Gupta</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				    <li><a href="//manushgupta.github.io/projects/" >Projects</a></li>
+				
+				    
+				    <li><a href="//manushgupta.github.io/posts/" >Posts</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="//manushgupta.github.io/images/manush.png" class="bio-photo" alt="Manush Gupta bio photo">
+
+
+  <h3 itemprop="name">Manush Gupta</h3>
+  <p>Aiming to make a career out of research. I travel a lot and cover music.</p>
+  <a href="mailto:manushgupta@gmail.com" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
+  <a href="http://twitter.com/manushgupta" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  <a href="http://facebook.com/manushgupta" class="author-social" target="_blank"><i class="fa fa-fw fa-facebook-square"></i> Facebook</a>
+  <a href="http://plus.google.com/+manushgupta" class="author-social" target="_blank"><i class="fa fa-fw fa-google-plus-square"></i> Google+</a>
+  
+  
+  <a href="http://instagram.com/man_u_should_just_sleep" class="author-social" target="_blank"><i class="fa fa-fw fa-instagram"></i> Instagram</a>
+  
+  <a href="http://github.com/manushgupta" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  <a href="http://steamcommunity.com/id/mhgupta" class="author-social" target="_blank"><i class="fa fa-fw fa-steam-square"></i> Steam</a>
+  <a href="https://youtube.com/user/ManushGupta" class="author-social" target="_blank"><i class="fa fa-fw fa-youtube-square"></i> Youtube</a>
+  <a href="http://soundcloud.com/manush-gupta" class="author-social" target="_blank"><i class="fa fa-fw fa-soundcloud"></i> Soundcloud</a>
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="//manushgupta.github.io/DS/" rel="bookmark" title="Spark">Spark vs Hadoop Map Reduce</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <h2 id="he-makes-it-look-easy">What is Apache Spark ?</h2>
+
+
+<p> Very simnply put, Apache Spark is a cluster computing platform designed for fast and large scale data processing.</p>
+  </div>
+
+
+<div class="article-wrap">
+      <h2 id="he-makes-it-look-easy">Why Spark?</h2>
+
+
+<p> For most of their history, the Moore's law applied to processing power of computers that is, computers became faster every year with the increasing number of transistors on a chip board. As a result of that most of the applications were designed to run only on a single processor.
+
+This trend however stopped due to a major heat dissipation limitation around 2004-05. We didn't have the technology to cool the chipsets with the amount of heat being dissipated on them as the number of transistors just kept on increasing. Therefore in keeping with the Gustaffson's law, the ecosystem switched towards adding more parallel CPU cores all running at the same speed. This change meant that suddenly applications needed to be modified to add parallelism in order to run faster. This provoked the need for parallel computing clusters like Hadoop Map Reduce.</p>
+<p> 
+  Moreover, the cost to store 1 TB of data continues to drop by roughly two times every 14 months, meaning that it is very inexpensive for organizations of all sizes to store large amounts of data.
+This set the stage for new programming models such as Spark. Why? Because Spark supports <b>In - Memory Processing</b></p>
+
+</div>
+
+<div class="article-wrap">
+      <h2 id="he-makes-it-look-easy">Key features</h2>
+
+<p>Spark’s key driving goal is to offer a unified platform for writing big data applications. It is designed to support a wide range of data analytics tasks, ranging from simple data loading and SQL queries to machine learning and streaming computation, over the same computing engine and with a consistent set of APIs. For example, if you load data using a SQL query and then evaluate a machine learning model over it using Spark’s ML library, the engine can combine these steps into one scan over the data.</p>
+<p>At its core, Spark is a “computational engine” that is responsible for scheduling, distributing, and monitoring applications consisting of many computational tasks across many worker machines, or a computing cluster. You can use Spark with a wide variety of persistent storage systems, including cloud storage systems such as Azure Storage and Amazon S3, distributed file systems such as Apache Hadoop, key-value stores such as Apache Cassandra, and message buses such as Apache Kafka. However, Spark neither stores data long term itself, nor favors one over another. Spark’s focus on computation makes it different from earlier big data software platforms such as Apache Hadoop. Hadoop included both a storage system (the Hadoop file system, designed for low-cost storage over clusters of commodity servers) and a computing system (MapReduce), which were closely integrated together.</p>
+<p>On the speed side, Spark extends the popular MapReduce model to efficiently support more types of computations, including interactive queries and stream processing. One of the main features Spark offers for speed is the ability to run computations in memory.
+On the generality side, Spark is designed to cover a wide range of workloads that previously required separate distributed systems, including batch applications, iterative algorithms, interactive queries, and streaming which is often necessary in production data analysis pipelines.
+Spark is designed to be highly accessible, offering simple APIs in Python, Java, Scala, and SQL, and rich built-in libraries. It also integrates closely with other Big Data tools. In particular, Spark can run in Hadoop clusters and access any Hadoop data source, including Cassandra (NoSQL database management system) </p>
+
+</div>
+
+
+
+
+
+<p><img src="../images/coursera-grade.png" /></p>
+
+<p>In terms of completing the course, i feel like 4-6 weeks is quite enough time, if done regularly. Off to <a href="http://cs231n.github.io/">CS231n</a> :).</p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=//manushgupta.github.io/ML/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=//manushgupta.github.io/ML/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=//manushgupta.github.io/ML/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>Machine learning - Coursera Course -Stanford</strong> was published on <time datetime="2016-03-16T00:00:00+05:30">March 16, 2016</time> and last modified on <time datetime="2016-03-16">March 16, 2016</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <footer>
+    
+
+<span>&copy; 2016 Manush Gupta.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="//manushgupta.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="//manushgupta.github.io/assets/js/scripts.min.js"></script>
+
+
+  
+
+
+
+
+</body>
+</html>
